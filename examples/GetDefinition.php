@@ -14,7 +14,7 @@ $defintions = $result->getDefinitions();
 
 $i = 1;
 foreach ($defintions as $definition) {
-    echo $i.". Tipo: ".$definition->getType()."\n";
-    echo "   Definición: ".$definition->getDefinition()."\n\n";
+    echo $i.'. Tipo: '.$definition->getType()."\n";
+    echo '   Definición: '.$definition->getDefinition()."\n\n";
     $i++;
 }

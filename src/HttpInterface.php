@@ -2,8 +2,7 @@
 
 namespace RAE;
 
-use RAE\Exception;
-use GuzzleHttp\Client as GuzzleClient;
+
 
 class HttpInterface
 {
@@ -20,12 +19,11 @@ class HttpInterface
         $this->truncatedDebug = $bool;
     }
 
-
     public function sendRequest(
         $endpoint,
         $class)
     {
-        $url = Constants::BASE_URL . $endpoint;
+        $url = Constants::BASE_URL.$endpoint;
 
         $headers =
         [
@@ -65,6 +63,7 @@ class HttpInterface
         }
 
         $mapper = new \JsonMapper();
+
         return $mapper->map(self::api_body_decode($body), $class);
     }
 

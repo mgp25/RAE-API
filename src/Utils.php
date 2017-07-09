@@ -51,8 +51,9 @@ class Utils
         return $colored_string;
     }
 
-    public static function find_between($string, $start, $end){
-        $string = ' ' . $string;
+    public static function find_between($string, $start, $end)
+    {
+        $string = ' '.$string;
         $ini = strpos($string, $start);
         if ($ini == 0) {
             return '';
@@ -63,27 +64,28 @@ class Utils
         return substr($string, $ini, $len);
     }
 
-    public static function get_definitions($html) {
+    public static function get_definitions($html)
+    {
         $text = strip_tags($html);
-        $text = str_replace('U.','', $text);
-        $text = str_replace('Era u.','', $text);
-        $text = str_replace('p. us.','', $text);
-        $text = str_replace('desus.','', $text);
-        $text = str_replace('m.','', $text);
-        $text = str_replace('f.','', $text);
+        $text = str_replace('U.', '', $text);
+        $text = str_replace('Era u.', '', $text);
+        $text = str_replace('p. us.', '', $text);
+        $text = str_replace('desus.', '', $text);
+        $text = str_replace('m.', '', $text);
+        $text = str_replace('f.', '', $text);
         $text = str_replace('t. repetida', '', $text);
         $text = str_replace(' interj.', 'interj.', $text);
 
-        $first = self::find_between($text, '1.','.2');
-        if ($first == "") {
-            $first = self::find_between($text, '1.','.');
+        $first = self::find_between($text, '1.', '.2');
+        if ($first == '') {
+            $first = self::find_between($text, '1.', '.');
         }
 
-        $defs = [$first, self::find_between($text, '2.','.3')];
+        $defs = [$first, self::find_between($text, '2.', '.3')];
 
         $definitions = [];
         foreach ($defs as $def) {
-            $data = explode(".", $def);
+            $data = explode('.', $def);
             $definitions[] =
             [
                 'type'          => $data[0],
@@ -92,9 +94,9 @@ class Utils
         }
         $body =
         [
-            'definitions' => $definitions
+            'definitions' => $definitions,
         ];
+
         return json_encode($body);
     }
-
 }
