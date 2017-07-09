@@ -12,8 +12,8 @@ class RAE
     /**
      * Constructor.
      *
-     * @param bool  $debug          Show API queries and responses.
-     * @param bool  $truncatedDebug Truncate long responses in debug.
+     * @param bool $debug          Show API queries and responses.
+     * @param bool $truncatedDebug Truncate long responses in debug.
      */
     public function __construct(
         $debug = false,
@@ -23,7 +23,6 @@ class RAE
         $this->http->setDebug($debug);
         $this->http->setTruncatedDebug($truncatedDebug);
     }
-
 
     /**
      * Obtiene la palabra del día.
@@ -36,15 +35,16 @@ class RAE
     {
         $data =
         [
-            'callback' => 'json'
+            'callback' => 'json',
         ];
+
         return $this->http->sendRequest('wotd?'.http_build_query($data), new Response\WordOfTheDayResponse());
     }
 
     /**
-     * Muestra palabra/s con similitud a $query
+     * Muestra palabra/s con similitud a $query.
      *
-     * @param string    $query  Palabra a consultar.
+     * @param string $query Palabra a consultar.
      *
      * @throws \RAE\Exception\RAEException
      *
@@ -54,16 +54,17 @@ class RAE
     {
         $data =
         [
-            'q' => $query,
-            'callback' => 'jsonp123'
+            'q'        => $query,
+            'callback' => 'jsonp123',
         ];
-        return $this->http->sendRequest('keys?'.http_build_query($data) , new Response\KeyQueryResponse());
+
+        return $this->http->sendRequest('keys?'.http_build_query($data), new Response\KeyQueryResponse());
     }
 
     /**
      * Busca una palabra.
      *
-     * @param string    $word   Palabra a buscar.
+     * @param string $word Palabra a buscar.
      *
      * @throws \RAE\Exception\RAEException
      *
@@ -85,7 +86,7 @@ class RAE
      *
      * @see searchWord().
      *
-     * @param string    $word   Palabra a buscar.
+     * @param string $word Palabra a buscar.
      *
      * @throws \RAE\Exception\RAEException
      *
