@@ -1,0 +1,25 @@
+{
+	"name": "mgp25/rae-api",
+	"type": "library",
+	"description": "RAE API",
+	"keywords": ["RAE", "api"],
+	"homepage": "https://github.com/mgp25/RAE-API",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "mgp25",
+			"email": "me@mgp25.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6.0",
+		"ext-curl": "*",
+		"netresearch/jsonmapper": "^1.0",
+		"guzzlehttp/guzzle": "^6.2"
+	},
+	"autoload": {
+        "psr-4": {
+            "RAE\\": "src/"
+        }
+    }
+}
