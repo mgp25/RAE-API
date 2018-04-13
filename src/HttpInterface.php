@@ -27,7 +27,7 @@ class HttpInterface
 
         $headers =
         [
-            'User-Agent'        => null,
+            'User-Agent'        => 'Diccionario/2 CFNetwork/808.2.16 Darwin/16.3.0',
             'Content-Type'      => 'application/x-www-form-urlencoded',
             'Authorization'     => Constants::AUTH,
         ];
