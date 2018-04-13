@@ -2,8 +2,6 @@
 
 namespace RAE;
 
-
-
 class HttpInterface
 {
     protected $debug;
