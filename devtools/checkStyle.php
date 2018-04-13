@@ -115,7 +115,7 @@ class styleChecker
                 $params = explode(', ', $params);
 
                 $outputLines[] = $funcstart.'('.PHP_EOL;
-                for ($i = 0, $len = count($params); $i < $len; ++$i) {
+                for ($i = 0, $len = count($params); $i < $len; $i++) {
                     $newline = '        '.$params[$i];
                     if ($i == ($len - 1)) {
                         $newline .= ')'.PHP_EOL;
