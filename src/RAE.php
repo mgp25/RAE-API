@@ -7,7 +7,7 @@ class RAE
     /**
      * HTTP interface.
      */
-    protected $http;
+    public $http;
 
     /**
      * Constructor.
@@ -38,7 +38,7 @@ class RAE
             'callback' => 'json',
         ];
 
-        return $this->http->sendRequest('wotd?'.http_build_query($data), new Response\WordOfTheDayResponse());
+        return new Response\WordOfTheDayResponse($this->http->sendRequest('wotd?'.http_build_query($data)));
     }
 
     /**
@@ -50,7 +50,8 @@ class RAE
      *
      * @return \RAE\Response\KeyQueryResponse
      */
-    public function keyQuery($query)
+    public function keyQuery(
+        $query)
     {
         $data =
         [
@@ -58,7 +59,7 @@ class RAE
             'callback' => 'jsonp123',
         ];
 
-        return $this->http->sendRequest('keys?'.http_build_query($data), new Response\KeyQueryResponse());
+        return new Response\KeyQueryResponse($this->http->sendRequest('keys?'.http_build_query($data)));
     }
 
     /**
@@ -70,14 +71,15 @@ class RAE
      *
      * @return \RAE\Response\SearchWordResponse
      */
-    public function searchWord($word)
+    public function searchWord(
+        $word)
     {
         $data =
         [
             'w' => $word,
         ];
 
-        return $this->http->sendRequest('search?'.http_build_query($data), new Response\SearchWordResponse());
+        return new Response\SearchWordResponse($this->http->sendRequest('search?'.http_build_query($data)));
     }
 
     /**
@@ -87,18 +89,20 @@ class RAE
      * @see searchWord().
      *
      * @param string $word Palabra a buscar.
+     * @param mixed  $id
      *
      * @throws \RAE\Exception\RAEException
      *
      * @return \RAE\Response\FetchWordResponse
      */
-    public function fetchWord($id)
+    public function fetchWord(
+        $id)
     {
         $data =
         [
             'id' => $id,
         ];
 
-        return $this->http->sendRequest('fetch?'.http_build_query($data), new Response\FetchWordResponse());
+        return new Response\FetchWordResponse($this->http->sendRequest('fetch?'.http_build_query($data)));
     }
 }

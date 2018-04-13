@@ -2,10 +2,24 @@
 
 namespace RAE\Response\Model;
 
-use RAE\AutoPropertyHandler;
+use RAE\AutoPropertyMapper;
 
-class Definition extends AutoPropertyHandler
+/**
+ * Definition.
+ *
+ * @method mixed getDefinition()
+ * @method mixed getType()
+ * @method bool isDefinition()
+ * @method bool isType()
+ * @method $this setDefinition(mixed $value)
+ * @method $this setType(mixed $value)
+ * @method $this unsetDefinition()
+ * @method $this unsetType()
+ */
+class Definition extends AutoPropertyMapper
 {
-    public $type;
-    public $definition;
+    const JSON_PROPERTY_MAP = [
+        'type'       => '',
+        'definition' => '',
+    ];
 }

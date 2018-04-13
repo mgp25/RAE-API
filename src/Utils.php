@@ -51,7 +51,10 @@ class Utils
         return $colored_string;
     }
 
-    public static function find_between($string, $start, $end)
+    public static function find_between(
+        $string,
+        $start,
+        $end)
     {
         $string = ' '.$string;
         $ini = strpos($string, $start);
@@ -64,7 +67,8 @@ class Utils
         return substr($string, $ini, $len);
     }
 
-    public static function get_definitions($html)
+    public static function get_definitions(
+        $html)
     {
         $text = strip_tags($html);
         $text = str_replace('U.', '', $text);
@@ -97,6 +101,6 @@ class Utils
             'definitions' => $definitions,
         ];
 
-        return json_encode($body);
+        return $body;
     }
 }

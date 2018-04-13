@@ -2,11 +2,29 @@
 
 namespace RAE\Response\Model;
 
-use RAE\AutoPropertyHandler;
+use RAE\AutoPropertyMapper;
 
-class Res extends AutoPropertyHandler
+/**
+ * Res.
+ *
+ * @method mixed getGrp()
+ * @method mixed getHeader()
+ * @method mixed getId()
+ * @method bool isGrp()
+ * @method bool isHeader()
+ * @method bool isId()
+ * @method $this setGrp(mixed $value)
+ * @method $this setHeader(mixed $value)
+ * @method $this setId(mixed $value)
+ * @method $this unsetGrp()
+ * @method $this unsetHeader()
+ * @method $this unsetId()
+ */
+class Res extends AutoPropertyMapper
 {
-    public $header;
-    public $id;
-    public $grp;
+    const JSON_PROPERTY_MAP = [
+        'header' => '',
+        'id'     => '',
+        'grp'    => '',
+    ];
 }

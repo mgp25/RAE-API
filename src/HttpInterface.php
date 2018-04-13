@@ -2,26 +2,25 @@
 
 namespace RAE;
 
-
-
 class HttpInterface
 {
-    protected $debug;
-    protected $truncatedDebug;
+    public $debug;
+    public $truncatedDebug;
 
-    public function setDebug($bool)
+    public function setDebug(
+        $bool)
     {
         $this->debug = $bool;
     }
 
-    public function setTruncatedDebug($bool)
+    public function setTruncatedDebug(
+        $bool)
     {
         $this->truncatedDebug = $bool;
     }
 
     public function sendRequest(
-        $endpoint,
-        $class)
+        $endpoint)
     {
         $url = Constants::BASE_URL.$endpoint;
 
@@ -50,8 +49,12 @@ class HttpInterface
             $body = Utils::get_definitions($body);
         }
 
+        if (is_array($body)) {
+            $body = json_encode($body);
+        }
+
         if ($this->debug) {
-            Debug::printRequest('GET', $endpoint);
+            Debug::printRequest('GET', Constants::BASE_URL.$endpoint);
             $bytes = Utils::formatBytes($response->getHeader('Content-Length')[0]);
             Debug::printHttpCode($response->getStatusCode(), $bytes);
             Debug::printResponse($body, $this->truncatedDebug);
@@ -62,15 +65,6 @@ class HttpInterface
             return;
         }
 
-        $mapper = new \JsonMapper();
-
-        return $mapper->map(self::api_body_decode($body), $class);
-    }
-
-    public static function api_body_decode(
-        $json,
-        $assoc = false)
-    {
-        return json_decode($json, $assoc, 512, JSON_BIGINT_AS_STRING);
+        return json_decode($body, true);
     }
 }
