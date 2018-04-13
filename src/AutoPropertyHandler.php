@@ -69,7 +69,7 @@ class AutoPropertyHandler
             // Make word 2 and higher start with uppercase ("i,Tunes,Item").
             // NOTE: Instagram's rule so far is that the first word is always
             // lowercase when they use camelcase.
-            for ($i = 1; $i < $len; ++$i) {
+            for ($i = 1; $i < $len; $i++) {
                 $chunks[$i] = ucfirst($chunks[$i]);
             }
             $camelPropertyName = implode('', $chunks); // "iTunesItem"
