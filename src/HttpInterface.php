@@ -27,18 +27,20 @@ class HttpInterface
         $headers =
         [
             'User-Agent'        => 'Diccionario/2 CFNetwork/808.2.16 Darwin/16.3.0',
-            'Content-Type'      => 'application/x-www-form-urlencoded',
             'Authorization'     => Constants::AUTH,
         ];
 
         $options =
         [
             'headers'   => $headers,
+            'version'   => '2.0',
+            'verify'    => false
         ];
 
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', $url, $options);
-        $body = str_replace("\n", '', $response->getBody()->getContents());
+        $contents = $response->getBody()->getContents();
+        $body = str_replace("\n", '', $contents);
         $body = str_replace("\t", '', $body);
 
         if (strpos($body, 'json(') !== false) {
@@ -55,7 +57,7 @@ class HttpInterface
 
         if ($this->debug) {
             Debug::printRequest('GET', Constants::BASE_URL.$endpoint);
-            $bytes = Utils::formatBytes($response->getHeader('Content-Length')[0]);
+            $bytes = Utils::formatBytes(strlen($contents));
             Debug::printHttpCode($response->getStatusCode(), $bytes);
             Debug::printResponse($body, $this->truncatedDebug);
         }
